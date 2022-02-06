@@ -36,7 +36,15 @@ function populateChart(data) {
   let lineChart = new Chart(line, {
     type: 'line',
     data: {
-      labels,
+      labels: [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"],
+
       datasets: [
         {
           label: 'Workout Duration In Minutes',
@@ -108,4 +116,24 @@ function populateChart(data) {
 }
 
 // get all workout data from back-end
+
+let pieChart = new Chart(pie, {
+  type: "pie",
+  data: {
+    labels: workouts,
+    datasets: [
+      {
+        label: "Performed Excercises ",
+        backgroundColor: colors,
+        data: durations
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Performed Excercises "
+    }
+  }
+});
 API.getWorkoutsInRange().then(populateChart);
